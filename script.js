@@ -1,25 +1,47 @@
-console.log(56);
+// Get references to the global variables needed
+const notesContainer = document.getElementById("app");
+const addNoteButton = notesContainer.querySelector(".add-note");
 
-// let textColour = document.querySelector("text-colour");
-// let input = textColour[1].children[0];
-// input.value = "#00ffa1";
+const noteColour = document.getElementById("col");
+// const fontColour = document.getElementById("fontCol");
+noteColour.value = "#ffffff"
+    // fontColour.value = "#000000"
 
-let button2 = document.querySelector(".add-note");
-let right_container = document.querySelector(".right-container-notes");
-let textarea = document.querySelector("textarea");
+// Add note event
+addNoteButton.addEventListener("click", () => addNote(noteColour.value));
 
-button2.addEventListener('click', function() {
-    console.log(10);
-    if (textColour[0].value == "") {
-        alert("Enter Some Text");
-        return;
-    }
-    addNotes(textColour[0].value, input.value);
-    textColour[0].value = "";
-});
+// Function to create a new note element
+function createNoteElement(id, content, noteColour) {
+    // Create a new note container
+    const element = document.createElement("textarea");
 
-function addNotes(note, colour) {
-    div1 = document.createElement("div");
-    div1.innerHTML = `<p>${note}</p>`;
-    right_container.appendChild(div1);
+    element.classList.add("note");
+    element.style.backgroundColor = `${noteColour}`;
+    // element.style.color = `${fontColour}`;
+    element.value = content;
+    element.placeholder = "Write Your Note Here....";
+
+    element.addEventListener("change", () => {
+        updateNote(id, element.value);
+    });
+    // double-click to delete note 
+    element.addEventListener("dblclick", () => {
+        deleteNote(id, element);
+    });
+
+    return element;
+}
+
+// Function to add a new note to the container
+function addNote(noteColour) {
+    // genrate unique id with date.now
+    const noteId = Date.now();
+    // Create a new note element and insert it before the "Add Note" button
+    const noteElement = createNoteElement(noteId, "", noteColour);
+    notesContainer.insertBefore(noteElement, addNoteButton);
+}
+
+// Function to delete a note 
+function deleteNote(id, element) {
+    notesContainer.removeChild(element);
 }
