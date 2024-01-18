@@ -9,26 +9,12 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="left-container">
-            <div class="text-colour">
-                <textarea class="texting" cols="20" rows="20" placeholder="// Write a note here">
-            </textarea>
-                <div class="color">
-                    <input type="color">
-                </div>
-            </div>
-            <button class="add-note">Add Note</button>
-        </div>
-        <div class="right-container">
-            <h1>Your Notes</h1>
-            <div class="right-container-notes"></div>
-            <span class="notesNotAdded">
-                <p>
-                    You have not added a note yet.</p>
-            </span>
-
-        </div>
+    <h1>Sticky Notes</h1>
+    <h3>(Double Click On Note To Remove It)</h3>
+    <h3>Select Note Colour- <input type="color" id="col"></h3>
+    <!-- <h3>Select Font Colour- <input type="color" id="fontCol"></h3> -->
+    <div id="app">
+        <button class="add-note" type="button">+</button>
     </div>
     <script src="./script.js"></script>
 </body>
